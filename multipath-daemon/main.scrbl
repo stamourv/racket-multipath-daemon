@@ -23,7 +23,7 @@ UNIX domain socket.
 
   @defmethod[(reconfigure) boolean?]{
     Ask @tt{multipathd} to re-read it's configuration file and reconfigure
-    all multipaths.  Basically equivalent to restarting it.
+    all multipath maps.  Basically equivalent to restarting it.
   }
 
   @defmethod[(list-paths) (listof (hash/c symbol? any/c))]{
@@ -38,10 +38,11 @@ UNIX domain socket.
                           (uuid . "foobar-3cc708a235e4c035"))]
   }
 
-  @defmethod[(list-multipaths) (hash/c symbol? any/c)]{
-    Queries known multipaths (devices with more than one path).
+  @defmethod[(list-maps) (hash/c symbol? any/c)]{
+    Queries known multipath maps (virtual devices diverting I/O to
+    individual paths).
 
-    Every such multipath looks approximately like this:
+    Every such map looks approximately like this:
 
     @racketblock['#hasheq((device . "disk1")
                           (name . "disk1")

@@ -72,7 +72,7 @@
              (void)]
 
             [(("fail"))
-             (error* 'multipath-daemon-command
+             (error* 'multipath-daemon
                      "remote command failed"
                      '("command" value) command)]
 

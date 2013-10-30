@@ -84,8 +84,10 @@
 
     (define/public (list-paths)
       (for/list ([line (command "list" "paths" "format" "%d %D %o %w")])
-        (let-values ([(device major minor status uuid)
-                      (apply values (regexp-split #rx"[ \t:]+" line))])
+        (let*-values ([(device devno status uuid)
+                       (apply values (regexp-split #rx"[ \t]+" line))]
+                      [(major minor)
+                       (apply values (string-split devno ":"))])
           (hasheq 'device device
                   'major (string->number major)
                   'minor (string->number minor)
@@ -95,7 +97,7 @@
     (define/public (list-maps)
       (for/list ([line (command "list" "maps")])
         (let-values ([(name device uuid)
-                      (apply values (regexp-split #rx"[ \t:]+" line))])
+                      (apply values (regexp-split #rx"[ \t]+" line))])
           (hasheq 'device device
                   'name name
                   'uuid uuid))))

@@ -8,10 +8,15 @@
          racket/format
          racket/class
          unstable/socket
-         unstable/error)
+         throw)
 
 (provide multipath-daemon%
-         multipath-daemon/c)
+         multipath-daemon/c
+         exn:fail:multipath-daemon?)
+
+
+(define-struct (exn:fail:multipath-daemon exn:fail)
+  ())
 
 
 ;; Default according to multipath-tools source as of 2013-10-21.
@@ -72,9 +77,9 @@
              (void)]
 
             [(("fail"))
-             (error* 'multipath-daemon
-                     "remote command failed"
-                     '("command" value) command)]
+             (throw exn:fail:multipath-daemon
+                    'multipath-daemon "remote command failed"
+                    '("command" value) command)]
 
             [(())
              null]

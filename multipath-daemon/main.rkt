@@ -7,8 +7,9 @@
          racket/string
          racket/format
          racket/class
-         unstable/socket
-         throw)
+         unstable/socket)
+
+(require misc1/throw)
 
 (provide multipath-daemon%
          multipath-daemon/c

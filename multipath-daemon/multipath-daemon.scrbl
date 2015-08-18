@@ -2,7 +2,7 @@
 
 @require[(for-label multipath-daemon)
          (for-label racket)
-         (for-label unstable/socket)]
+         (for-label racket/unix-socket)]
 
 @title{Multipath Daemon API}
 @author+email["Jan Dvorak" "mordae@anilinux.org"]

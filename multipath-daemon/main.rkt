@@ -7,7 +7,7 @@
          racket/string
          racket/format
          racket/class
-         unstable/socket)
+         racket/unix-socket)
 
 (require misc1/throw)
 
